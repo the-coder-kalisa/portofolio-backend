@@ -4,10 +4,10 @@ const { validateEmail, mail, transporter } = require("./validator");
 require("dotenv").config();
 const http = require("http");
 const PORT = 5000;
-app.get("/me", (_req, res) => {
+app.get("/", (_req, res) => {
   res.send("backend for my portfolio");
 });
-app.get("/", (req, res) => {
+app.post("/", (req, res) => {
   const { email, message } = req.body;
   if (validateEmail(email)) {
     transporter.sendMail(mail(message, email), (err, info) => {
