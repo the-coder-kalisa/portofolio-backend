@@ -9,6 +9,7 @@ app.use(cors());
 app.get("/", (_req, res) => {
   res.send("backend for my portfolio");
 });
+var port = process.env.PORT || 1337;
 app.post("/", (req, res) => {
   const { email, message } = req.body;
 
@@ -33,6 +34,6 @@ app.post("/", (req, res) => {
     res.status(400).send("Invalid email");
   }
 });
-app.listen(5000, () => {
-  console.log("server started");
+app.listen(port, () => {
+  console.log("server started " + port);
 });
