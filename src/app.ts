@@ -28,6 +28,9 @@ const mail = (message: string, email: string): Mail.Options => {
     text: message,
   };
 };
+app.get("/", (_req: Request, res: Response) =>{
+  res.send("backend for my portfolio");
+})
 app.post("/", (req: Request, res: Response): void => {
   const { email, message }: body = req.body;
   if (validateEmail(email)) {
