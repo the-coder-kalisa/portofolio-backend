@@ -3,9 +3,7 @@ const app = express();
 const { validateEmail, mail, transporter } = require("./validator");
 require("dotenv").config();
 const cors = require("cors");
-const http = require("http");
 const emailExistence = require("email-existence");
-const PORT = 5000;
 app.use(express.json()).use(express.urlencoded());
 app.use(cors());
 app.get("/", (_req, res) => {
@@ -35,6 +33,6 @@ app.post("/", (req, res) => {
     res.status(400).send("Invalid email");
   }
 });
-
-const server = http.createServer(app);
-server.listen(PORT, () => console.log(`server running on port ${PORT}`));
+app.listen(5000, () => {
+  console.log("server started");
+});
