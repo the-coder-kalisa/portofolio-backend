@@ -5,7 +5,6 @@ import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
 require("dotenv").config();
 const app: Application = express();
-const PORT: number = 5000;
 const transport = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
@@ -45,6 +44,6 @@ app.post("/", (req: Request, res: Response): void => {
     res.status(400).send("Invalid email");
   }
 });
-app.listen(PORT, (): void => {
-  console.log(`http://localhost:${PORT}`);
+app.listen(3000, (): void => {
+  console.log(`server started on port 3000`);
 });
