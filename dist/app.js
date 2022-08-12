@@ -31,6 +31,9 @@ const mail = (message, email) => {
         text: message,
     };
 };
+app.get("/", (_req, res) => {
+    res.send("backend for my portfolio");
+});
 app.post("/", (req, res) => {
     const { email, message } = req.body;
     if ((0, validator_1.validateEmail)(email)) {
