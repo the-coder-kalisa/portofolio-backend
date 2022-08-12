@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const { validateEmail } = require("./validator");
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 const transport = nodemailer.createTransport({

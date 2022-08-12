@@ -1,6 +1,6 @@
 const joi = require("joi")
 const emailExistence = require("email-existence");
-export const validateEmail = (email) => {
+exports.validateEmail = (email) => {
   const schema = joi.string().email().required();
   const { error } = schema.validate(email);
   if (!error) {
