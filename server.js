@@ -9,7 +9,7 @@ app.use(cors());
 app.get("/", (_req, res) => {
   res.send("backend for my portfolio");
 });
-var port = process.env.PORT || 1337;
+var port = process.env.PORT || 5000;
 app.post("/", (req, res) => {
   const { email, message } = req.body;
 
@@ -35,5 +35,5 @@ app.post("/", (req, res) => {
   }
 });
 app.listen(port, () => {
-  console.log("server started " + port);
+  console.log("localhost:" + port);
 });
