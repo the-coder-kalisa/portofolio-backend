@@ -4,8 +4,8 @@ const nodemailer = require("nodemailer")
 exports.validateEmail = (email) => {
   const schema = joi.string().email().required();
   const { error } = schema.validate(email);
-  if(error) return false;
-    return true;
+  if(error || !/[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm.test(email)) return false;
+  return true;
 };
 
 exports.transporter = nodemailer.createTransport({
