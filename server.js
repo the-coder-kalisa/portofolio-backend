@@ -20,11 +20,20 @@ const transporter = nodemailer.createTransport({
     expires: Number.parseInt(process.env.GMAIL_OAUTH_TOKEN_EXPIRE, 10),
   },
 });
-app.get("/", (_req, res) =>{
+app.get("/", (_req, res) => {
   res.status(200).send("my potoflio backend");
-})
-app.post("/send", (req, res) => {
+});
+app.post("/", (req, res) => {
   const { name, email, message } = req.body;
+  if (!name || name === "") return res.status(400).send("name is required");
+  if (
+    !email ||
+    email === "" ||
+    !/[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/gim.test(email)
+  )
+    return res.status(400).send("email must be valid");
+  if (!message || message === "")
+    return res.status(400).send("message is required");
   const mailOptions = {
     from: email,
     to: process.env.GMAIL_ADDRESS,
@@ -48,4 +57,6 @@ app.post("/send", (req, res) => {
     })
   );
 });
-app.listen(port, () => {console.log(`localhost:${port}`)})
+app.listen(port, () => {
+  console.log(`localhost:${port}`);
+});
