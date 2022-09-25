@@ -48,7 +48,7 @@ app.post("/", (req, res) => {
           if (err) {
             res.status(500).send("something went wrong");
           } else {
-            res.status(200).json("Email sent successfully");
+            res.status(200).send("Email sent successfully");
           }
         });
       } else {
