@@ -20,6 +20,9 @@ const transporter = nodemailer.createTransport({
     expires: Number.parseInt(process.env.GMAIL_OAUTH_TOKEN_EXPIRE, 10),
   },
 });
+app.get("/", (_req, res) =>{
+  res.status(200).send("my potoflio backend");
+})
 app.post("/send", (req, res) => {
   const { name, email, message } = req.body;
   const mailOptions = {
