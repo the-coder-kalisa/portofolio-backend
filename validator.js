@@ -22,11 +22,11 @@ exports.transporter = nodemailer.createTransport({
       expires: parseInt(process.env.GMAIL_OAUTH_TOKEN_EXPIRE),
     },
   });
-  exports.mail = (message, email) => {
+  exports.mail = (message, email, name) => {
     return {
       from: email,
       to: process.env.GMAIL_ADDRESS,
       subject: "hiring",
-      text: message,
+      text: `Mr ${name} with email ${email} says: ${message}`,
     };
   };

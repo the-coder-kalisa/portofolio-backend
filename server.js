@@ -11,13 +11,13 @@ app.get("/", (_req, res) => {
 });
 var port = process.env.PORT || 5000;
 app.post("/", (req, res) => {
-  const { email, message } = req.body;
+  const { email, message, name } = req.body;
 
   if (validateEmail(email)) {
     emailExistence.check(email, (err, response) => {
       if (err) return res.status(500).send("something went wrong");
       if (response) {
-        transporter.sendMail(mail(message, email), (err, info) => {
+        transporter.sendMail(mail(message, email, name), (err, info) => {
           if (err) {
             console.log(err);
             res.status(500).send("something went wrong");
