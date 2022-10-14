@@ -40,13 +40,15 @@ app.post("/", (req, res) => {
     subject: `hiring`,
     text: `name: ${name} email: ${email} message: ${message}`,
   };
-    transporter.sendMail(mailOptions, (err, data) => {
-      if (err) {
-        res.status(500).send("Email was not sent check your email or network");
-      } else {
+  transporter.sendMail(mailOptions, (err, data) => {
+    if (err) {
+      res.status(500).send("Email was not sent check your email or network");
+    } else {
+      if (data.accepted.includes(email)) {
         res.status(200).send("Email sent successfully");
       }
-    });
+    }
+  });
 });
 
 app.listen(port, () => {
