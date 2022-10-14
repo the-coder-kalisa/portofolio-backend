@@ -44,9 +44,7 @@ app.post("/", (req, res) => {
     if (err) {
       res.status(500).send("Email was not sent check your email or network");
     } else {
-      if (data.accepted.includes(email)) {
-        res.status(200).send("Email sent successfully");
-      }
+      res.status(200).send("Email sent successfully");
     }
   });
 });
