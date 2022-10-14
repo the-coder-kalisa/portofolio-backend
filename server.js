@@ -40,18 +40,13 @@ app.post("/", (req, res) => {
     subject: `hiring`,
     text: `name: ${name} email: ${email} message: ${message}`,
   };
-  if (error) return res.status(500).send(error);
-  if (response) {
     transporter.sendMail(mailOptions, (err, data) => {
       if (err) {
-        res.status(500).send("something went wrong");
+        res.status(500).send("Email was not sent check your email or network");
       } else {
         res.status(200).send("Email sent successfully");
       }
     });
-  } else {
-    res.status(404).send("email does not exist");
-  }
 });
 
 app.listen(port, () => {
