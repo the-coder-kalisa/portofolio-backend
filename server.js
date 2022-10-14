@@ -40,23 +40,20 @@ app.post("/", (req, res) => {
     subject: `hiring`,
     text: `name: ${name} email: ${email} message: ${message}`,
   };
-  if (
-    emailExistence.check(email, (error, response) => {
-      if (error) return res.status(500).send(error);
-      if (response) {
-        transporter.sendMail(mailOptions, (err, data) => {
-          if (err) {
-            res.status(500).send("something went wrong");
-          } else {
-            res.status(200).send("Email sent successfully");
-          }
-        });
+  if (error) return res.status(500).send(error);
+  if (response) {
+    transporter.sendMail(mailOptions, (err, data) => {
+      if (err) {
+        res.status(500).send("something went wrong");
       } else {
-        res.status(404).send("email does not exist");
+        res.status(200).send("Email sent successfully");
       }
-    })
-  );
+    });
+  } else {
+    res.status(404).send("email does not exist");
+  }
 });
+
 app.listen(port, () => {
   console.log(`localhost:${port}`);
 });
